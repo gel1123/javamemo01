@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.*;
 
 
 class UseFieAPI {
@@ -7,8 +7,12 @@ class UseFieAPI {
 		f.deleteOnExit();
 		w("-- f.delete() --");
 		w(f.delete());
-		//w("-- f.createNewFile() --");
-		//w(f.createNewFile());
+		w("-- f.createNewFile() --");
+		try {
+			w(f.createNewFile());
+		} catch(IOException e){
+			w(e);
+		}
 		w("-- f.exists() --");
 		w(f.exists());
 		w("-- f.getAbsolutePath() --");
@@ -29,9 +33,24 @@ class UseFieAPI {
 		w(f.list());
 		w("-- f.listFiles() --");
 		w(f.listFiles());
-		w("--  --");
+		try (
+			BufferedReader r = new BufferedReader(new FileReader("file/test02.txt"));
+			BufferedWriter w = new BufferedWriter(new FileWriter("file/test03.txt"))
+		) {
+			String s = "";
+			while ((s = r.readLine()) != null) {
+				w.write(s);
+				w.newLine();
+			}
+		} catch (IOException e) {
+			w(e);
+		} 
 	}
 	public static void w(Object s) {
+  if (s == null) {
+			w("null");
+			return;
+		}
 		System.out.println("["+s.getClass().getName()+"] "+s);
 	}
 }
