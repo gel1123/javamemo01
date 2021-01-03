@@ -6,6 +6,8 @@ class UseConsole {
 		Console c = null;
 		String s = null;
 		char[] p = null;
+
+		System.out.print("input something string: ");
 		// It may not be supported by 'eclipse'
 		if (
 			( (c = System.console()) == null )
@@ -14,14 +16,14 @@ class UseConsole {
 			w("[none input]");
 			return;
 		}
-		w("[Console::reawdLine] " + s);
+		w("[Console::readLine] " + s);
 		if (
-			((p = c.readPassword()) == null)
+			((p = c.readPassword("[%s]: ", "password")) == null)
 		)  {
 			w("[none password]");
 			return;
 		}
-		w("[Console::reawdPassword] " + String.valueOf(p));
+		w("[Console::readPassword] " + String.valueOf(p));
 	}
 	public static void w(Object s) {
   if (s == null) {
