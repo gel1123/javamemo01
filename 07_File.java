@@ -77,6 +77,7 @@ class UseFieAPI {
 			while ((c=in.read()) != -1) {
 				w("[read-test02.txt] " + ((char)c));
 				out.write((char)c);
+				out.flush();
 			}
 		} catch (IOException e) {
 			w(e);
