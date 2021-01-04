@@ -116,7 +116,7 @@ class UseNIO {
 		}
 	}
 	public static void w(Object s) {
-  if (s == null) {
+		if (s == null) {
 			w("null");
 			return;
 		}
