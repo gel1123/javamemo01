@@ -1,0 +1,17 @@
+
+
+#dpkg -L mysql-connector-java
+/.
+/usr
+/usr/share
+/usr/share/doc
+/usr/share/doc/mysql-connector-java
+/usr/share/doc/mysql-connector-java/CHANGES.gz
+/usr/share/doc/mysql-connector-java/INFO_BIN
+/usr/share/doc/mysql-connector-java/INFO_SRC
+/usr/share/doc/mysql-connector-java/LICENSE.gz
+/usr/share/doc/mysql-connector-java/README
+/usr/share/doc/mysql-connector-java/changelog.Debian.gz
+/usr/share/doc/mysql-connector-java/copyright
+/usr/share/java
+/usr/share/java/mysql-connector-java-8.0.22.jar
