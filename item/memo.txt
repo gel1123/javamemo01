@@ -1,5 +1,3 @@
-
-
 #dpkg -L mysql-connector-java
 /.
 /usr
@@ -15,3 +13,6 @@
 /usr/share/doc/mysql-connector-java/copyright
 /usr/share/java
 /usr/share/java/mysql-connector-java-8.0.22.jar
+
+# how to use 'less' on mysql-console
+pager less -n -i -S
