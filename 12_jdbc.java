@@ -21,6 +21,12 @@ class App {
 				ResultSet.CONCUR_UPDATABLE)
 		) {
 
+			w("---- c.getAutoCommit() ----");
+			w("default 'AutoCommit' mode is ["+c.getAutoCommit()+"]");
+			w("---- c.setAutoCommit(false) ----");
+			c.setAutoCommit(false);
+			w(c.getAutoCommit());
+
 			DatabaseMetaData m = c.getMetaData();
 			w("[[ is supported the type of 'forward-only'? ]]");
 			w(m.supportsResultSetType(
@@ -85,7 +91,20 @@ class App {
 			} catch (SQLException e) {
 				w("---- error ----");
 				w("The variable [r] is already closed.");
-				w(e);
+				w("-- e.getErrorCode() --");
+				w(e.getErrorCode());
+				w("-- e.getNextException() --");
+				w(e.getNextException());
+				w("-- e.getSQLState() --");
+				w(e.getSQLState());
+				w("-- e.setNextException() --");
+				e.setNextException(
+					new SQLException("dummy error1",
+						new Exception("dummy error2")));
+				w("-- e.iterator() --");
+				for (Throwable t : e) {
+					w(t);
+				}
 			}
 			w("---- SELECT * FROM table; ----");
 			r = s.executeQuery("SELECT * FROM 01_free;");
@@ -121,6 +140,9 @@ class App {
 			r = s.executeQuery("SELECT * FROM 01_free;");
 			while (r.next()) w(
 				r.getInt("id") + ": " + r.getString("name"));
+
+			w("-- c.commit(); --");
+			c.commit(); // not required "Auto Commit Mode" 
 
 		} catch (Exception e) {
 			w(e);
