@@ -91,7 +91,26 @@ class App {
 			r = s.executeQuery("SELECT * FROM 01_free;");
 			while (r.next()) w(
 				r.getInt("id") + ": " + r.getString("name"));
+			w("-- r.absolute(3) --");
 			r.absolute(3);
+			w(r.getInt("id") + ": " + r.getString("name"));
+			w("-- r.moveToInsertRow() --"); // must move on update
+			r.moveToInsertRow();
+			r.updateInt(1, 10);
+			r.updateString(2, "i_user1");
+			r.insertRow();
+			w("[insert row] "
+				+ r.getInt("id") + ": " + r.getString("name"));
+			r.updateInt(1, 11);
+			r.updateString(2, "i_user2");
+			r.insertRow();
+			w("[insert row] "
+				+ r.getInt("id") + ": " + r.getString("name"));
+			w("-- r.moveToCurrentRow() --");
+			r.moveToCurrentRow();
+			w("[current row] "
+				+ r.getInt("id") + ": " + r.getString("name"));
+
 			w("---- deleteRow() ----");
 			while (r.next()) {
 				w("[try delete-row] "

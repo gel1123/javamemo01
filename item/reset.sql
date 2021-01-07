@@ -10,7 +10,7 @@ create table if not exists 01_free (
 	name varchar(10)
 );
 truncate table 01_free;
-alter table 01_free add primary key (id);
+alter table 01_free drop primary key, add primary key (id);
 show tables;
 select * from 01_free;
 insert into 01_free value ( 1, "default01" );
