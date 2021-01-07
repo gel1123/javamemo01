@@ -3,7 +3,7 @@ import java.sql.*;
 class App {
 
 	private static final String URL
-		= "jdbc:mysql://127.0.0.1/sandbox"; // port is 80 
+		= "jdbc:mysql://127.0.0.1/sandbox";
 	private static final String USER = "user1";
 	private static final String PASS = "";
 	private static final long S = System.currentTimeMillis();
