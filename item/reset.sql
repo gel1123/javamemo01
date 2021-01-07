@@ -1,4 +1,9 @@
+pager less -n -i -S;
+
+create user if not exists "user1"@"localhost" identified by "";
+
 create database if not exists sandbox;
+grant all privileges on sandbox.* to "user1"@"localhost";
 use sandbox;
 create table if not exists 01_free (
 	id int,
