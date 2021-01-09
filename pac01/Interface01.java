@@ -1,5 +1,6 @@
 package pac01;
 
+@FunctionalInterface
 public interface Interface01 {
 
 	static String method01() {

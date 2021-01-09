@@ -5,16 +5,16 @@ import java.util.Collections;
 
 class ExeHogeComparable {
 
-    public static void main(String[] args) {
-	System.out.println("---- sample 'comparable' ----");
-	Hoge h1 = new Hoge(1, "hoge");
-	Hoge h2 = new Hoge(2, "fuge");
-	Hoge h3 = new Hoge(3, "age");
-	Hoge h4 = new Hoge(4, "sage");
-	List<Hoge>list = new ArrayList<>(Arrays.asList(h2, h3, h1, h4));
-	Collections.sort(list);
-	System.out.println(list);
-    }
+	public static void main(String[] args) {
+		System.out.println("---- sample 'comparable' ----");
+		Hoge h1 = new Hoge(1, "hoge");
+		Hoge h2 = new Hoge(2, "fuge");
+		Hoge h3 = new Hoge(3, "age");
+		Hoge h4 = new Hoge(4, "sage");
+		List<Hoge>list = new ArrayList<>(Arrays.asList(h2, h3, h1, h4));
+		Collections.sort(list);
+		System.out.println(list);
+	}
 }
 
 class Hoge implements Comparable<Hoge> {
