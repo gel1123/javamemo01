@@ -20,6 +20,22 @@ class App {
 			}
 		});
 		w_consumer(str -> w(str), "lambda");
+		w_consumer(new Consumer<String>() {
+			@Override
+			public void accept(String str) {
+				w(str);
+			}
+		}, "anonymous");
+		w_function(str -> str.length(), "lambda");
+		w_function(new Function<String, Integer>() {
+			@Override
+			public Integer apply(String str) {
+				return str.length();
+			}
+		}, "anonymous");
+		w_bifunction((s1, s2) -> (s1+s2).length(),
+			"Bi", "Function");
+		w_unaryoperator(i -> i*i);
 	}
 	public static void w_supplier(Supplier<String> s) {
 		w("---- exe Supplier ----");
@@ -33,6 +49,23 @@ class App {
 		, String self) {
 		w("---- exe Consumer ----");
 		c.accept(self);
+	}
+	public static void w_function(Function<String, Integer> f
+		, String self) {
+		w("---- exe Function ----");
+		w("\""+self+"\" length is " + f.apply(self));
+	}
+	public static void w_bifunction(
+		BiFunction<String, String, Integer> b,
+		String s1, String s2) {
+		w("---- exe BiFunction ----");
+		w("["+s1+"] + " + "["+s2+"] length is "
+			+ b.apply(s1, s2));
+	}
+	public static void w_unaryoperator(
+		UnaryOperator<Integer> u) {
+		w("---- exe UnaryOperator ----");
+		w(u.apply("UnaryOperator".length()));
 	}
 	public static void w(Object s) {
 		if (s == null) {
