@@ -14,10 +14,18 @@ class Box<K,  V> {
 	}
 }
 
+class Util {
+	public static <K, V> Map.Entry<K, V> createPair(K k, V v) {
+		// call generics class: [Class<T>]
+		return new Box<K, V>(k, v).getPair();
+	}
+}
+
 class App {
 	public static void main(String... args) {
+		// call generics method: [Class.<T>method()]
 		Map.Entry<String, Integer> e
-			= new Box<String, Integer>("str", 101).getPair();
+			= Util.<String, Integer>createPair("str", 101);
 		w(e);
 		w(e.getKey());
 		w(e.getValue());
