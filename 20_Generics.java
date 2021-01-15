@@ -1,16 +1,17 @@
 import java.util.AbstractMap;
 import java.util.Map;
 
-class Box<K,  V> {
+class Box<K, V> {
 	private K key;
 	private V val;
+
 	public Box(K k, V v) {
 		this.key = k;
 		this.val = v;
 	}
+
 	public Map.Entry<K, V> getPair() {
-		return new AbstractMap
-			.SimpleImmutableEntry<K, V>(this.key, this.val);
+		return new AbstractMap.SimpleImmutableEntry<K, V>(this.key, this.val);
 	}
 }
 
@@ -24,8 +25,7 @@ class Util {
 class UseGenerics {
 	public static void main(String... args) {
 		// call generics method: [Class.<T>method()]
-		Map.Entry<String, Integer> e
-			= Util.<String, Integer>createPair("str", 101);
+		Map.Entry<String, Integer> e = Util.<String, Integer> createPair("str", 101);
 		w(e);
 		w(e.getKey());
 		w(e.getValue());
@@ -41,7 +41,7 @@ class UseGenerics {
 		if (!ea && s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

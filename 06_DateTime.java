@@ -1,8 +1,10 @@
-import java.time.*;
-import java.time.chrono.*;
-import java.time.format.*;
-import java.time.temporal.*;
-import java.time.zone.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 class UseDateTimeAPI {
@@ -28,7 +30,7 @@ class UseDateTimeAPI {
 		for (DayOfWeek w : DayOfWeek.values()) {
 			w(w);
 		}
-		
+
 		w(
 			"---- LocalDate.parse(\"1994-03-15\") ----"
 		);
@@ -36,8 +38,8 @@ class UseDateTimeAPI {
 
 		w("---- compare date ----");
 		LocalDate b1 = LocalDate.parse("2016-09-14");
-		LocalDate b2 = LocalDate.parse("2019-11-23");	
-		LocalDate b3 = LocalDate.parse("2019-11-23");	
+		LocalDate b2 = LocalDate.parse("2019-11-23");
+		LocalDate b3 = LocalDate.parse("2019-11-23");
 
 		w("b1 is" + b1);
 		w("b2 is " + b2);
@@ -48,7 +50,7 @@ class UseDateTimeAPI {
 		w(b1.isBefore(b2));
 		w("b1.isEqual(b2)");
 		w(b1.isEqual(b2));
-		
+
 		w("b3.isAfter(b2)");
 		w(b3.isAfter(b2));
 		w("b3.isBefore(b2)");
@@ -73,8 +75,8 @@ class UseDateTimeAPI {
 				w(localDateTime.minus(1, u));
 				w("localDateTime.plus(1, u)");
 				w(localDateTime.plus(1, u));
-				w("localDateTime.truncatedTo(u)");	
-				w(localDateTime.truncatedTo(u));	
+				w("localDateTime.truncatedTo(u)");
+				w(localDateTime.truncatedTo(u));
 				w("localDateTime.until("
 					+ "LocalDateTime.now(), u)");
 				w(localDateTime.until(

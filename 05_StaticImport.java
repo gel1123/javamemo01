@@ -1,4 +1,3 @@
-import static pac01.Tekito01.MES;
 import static pac01.Tekito01.hello; // <= hello()メソッド。メソッドのstatic importであっても、"hello()" とか書いたりはしない
 //import static pac1.Tekito.*; // <= "static import" でもアスタリスクでの全読み込みは可能の模様
 import static pac01.Tekito02.hello; // <= こっちはフィールド変数のhello

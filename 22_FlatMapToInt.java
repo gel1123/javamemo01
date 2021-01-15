@@ -6,8 +6,8 @@ class UseFlatMap {
 	public static void main(String... args) {
 		w("---- start ----");
 		int[][] array = {
-			{1,2,3},
-			{4,5,6}
+				{ 1, 2, 3 },
+				{ 4, 5, 6 }
 		};
 		//Stream<Integer[]> s = Stream.of(array[0], array[1]); // <= compile error
 		Stream<int[]> s = Stream.of(array[0], array[1]);
@@ -27,7 +27,7 @@ class UseFlatMap {
 		if (!ea && s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

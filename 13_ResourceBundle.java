@@ -17,7 +17,7 @@ class UseResourceBundle {
 		try {
 			final File p = Paths.get("./prop").toFile();
 			final URLClassLoader loader = new URLClassLoader(
-				new URL[] {p.toURI().toURL()});
+					new URL[] { p.toURI().toURL() });
 
 			Locale ja = Locale.JAPAN;
 			Locale us = Locale.US;
@@ -32,11 +32,9 @@ class UseResourceBundle {
 				w("______________________");
 				w(locale);
 				ResourceBundle rb1 = ResourceBundle.getBundle(
-					"pac01.Resource", locale
-				);
+						"pac01.Resource", locale);
 				ResourceBundle rb2 = ResourceBundle.getBundle(
-					"source", locale, loader
-				);
+						"source", locale, loader);
 				w("<< getBundle from class file >>");
 				w("-- rb1.getString(\"var\") --");
 				w(rb1.getString("var"));
@@ -48,11 +46,13 @@ class UseResourceBundle {
 				w(rb2.getString("function"));
 				w("-- rb2.getString(\"const\") --");
 				w(rb2.getString("const"));
-			};
+			}
+			;
 		} catch (MalformedURLException e) {
 			w(e);
 		}
 	}
+
 	public static void w(Object s) {
 		if (s == null) {
 			w("null");
@@ -61,9 +61,10 @@ class UseResourceBundle {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
+
 	public static long lap() {
 		return System.currentTimeMillis() - S;
 	}

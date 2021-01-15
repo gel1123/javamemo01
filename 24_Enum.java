@@ -1,9 +1,11 @@
 enum Directions {
 	NORTH, EAST, WEST, SOUTH, OTHER
 };
+
 enum Cards {
 	SPADE, HEART, CLUB, DIAMOND, OTHER
 }
+
 class UseEnum {
 	public static void main(String... args) {
 		w("---- start ----");
@@ -34,7 +36,7 @@ class UseEnum {
 		if (!ea && s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

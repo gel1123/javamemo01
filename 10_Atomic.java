@@ -1,12 +1,12 @@
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class UseAtomic {
 	public static void main(String... args) {
 		final AtomicInteger i = new AtomicInteger(0);
-		final int t_num =3;
+		final int t_num = 3;
 		ExecutorService s = Executors.newFixedThreadPool(t_num);
 		long start = System.currentTimeMillis();
 		for (int n = 0; n < t_num; n++) {
@@ -23,10 +23,11 @@ class UseAtomic {
 		} catch (InterruptedException e) {
 			w(e);
 		}
-		w("[counted number] "+i.get());
+		w("[counted number] " + i.get());
 		w("[time required (millisecond)] "
-			+ (System.currentTimeMillis() - start));
+				+ (System.currentTimeMillis() - start));
 	}
+
 	public static void w(Object s) {
 		if (s == null) {
 			w("null");
@@ -35,7 +36,7 @@ class UseAtomic {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

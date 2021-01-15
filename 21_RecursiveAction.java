@@ -31,7 +31,7 @@ class AddAction extends RecursiveAction {
 
 class UseRecursiveAction {
 	public static void main(String... args) {
-		int data[] = {1,2,3,4,5};
+		int data[] = { 1, 2, 3, 4, 5 };
 		ForkJoinPool service = new ForkJoinPool();
 		service.invoke(new AddAction(data, 0, data.length));
 	}
@@ -46,7 +46,7 @@ class UseRecursiveAction {
 		if (!ea && s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 class UseJDBC {
 
-	private static final String URL
-		= "jdbc:mysql://127.0.0.1/sandbox";
+	private static final String URL = "jdbc:mysql://127.0.0.1/sandbox";
 	private static final String USER = "user1";
 	private static final String PASS = "";
 	private static final long S = System.currentTimeMillis();
@@ -21,13 +20,12 @@ class UseJDBC {
 		// JDBC 4.0
 		try (Connection c = DriverManager
 				.getConnection(URL, USER, PASS);
-			Statement s = c.createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_UPDATABLE)
-		) {
+				Statement s = c.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE,
+						ResultSet.CONCUR_UPDATABLE)) {
 
 			w("---- c.getAutoCommit() ----");
-			w("default 'AutoCommit' mode is ["+c.getAutoCommit()+"]");
+			w("default 'AutoCommit' mode is [" + c.getAutoCommit() + "]");
 			w("---- c.setAutoCommit(false) ----");
 			c.setAutoCommit(false);
 			w(c.getAutoCommit());
@@ -35,16 +33,16 @@ class UseJDBC {
 			DatabaseMetaData m = c.getMetaData();
 			w("[[ is supported the type of 'forward-only'? ]]");
 			w(m.supportsResultSetType(
-				ResultSet.TYPE_FORWARD_ONLY));
+					ResultSet.TYPE_FORWARD_ONLY));
 			w("[[ is supported the type of 'scroll insensitive'? ]]");
 			w(m.supportsResultSetType(
-				ResultSet.TYPE_SCROLL_INSENSITIVE));
+					ResultSet.TYPE_SCROLL_INSENSITIVE));
 			w("[[ is supported the type of 'scroll sensitive'? ]]");
 			w(m.supportsResultSetType(
-				ResultSet.TYPE_SCROLL_SENSITIVE));
+					ResultSet.TYPE_SCROLL_SENSITIVE));
 
 			ResultSet r = s.executeQuery(
-				"SELECT * FROM 01_free;");
+					"SELECT * FROM 01_free;");
 
 			w("-- r.getType() --");
 			final int type;
@@ -58,28 +56,34 @@ class UseJDBC {
 			} else {
 				w("unknown type");
 			}
-			if (r.isBeforeFirst()) w("<< r.isBeforeFirst >>");
+			if (r.isBeforeFirst())
+				w("<< r.isBeforeFirst >>");
 			w("-- while (r.next()) --");
 			while (r.next()) {
-				if (r.isFirst()) w("<< r.isFirst >>");
-				if (r.isLast()) w("<< r.isLast >>");
+				if (r.isFirst())
+					w("<< r.isFirst >>");
+				if (r.isLast())
+					w("<< r.isLast >>");
 				w(r.getInt("id"));
 				w(r.getString("name"));
 			}
-			if (r.isAfterLast()) w("<< r.isAfterLast >>");
+			if (r.isAfterLast())
+				w("<< r.isAfterLast >>");
 			w("-- while (r.previous()) --");
 			while (r.previous()) {
-				if (r.isFirst()) w("<< r.isFirst >>");
-				if (r.isLast()) w("<< r.isLast >>");
+				if (r.isFirst())
+					w("<< r.isFirst >>");
+				if (r.isLast())
+					w("<< r.isLast >>");
 				w(r.getInt("id"));
 				w(r.getString("name"));
 			}
 
 			int i = s.executeUpdate(
-				"INSERT INTO 01_free VALUE (4, 'hoge');");
-			w("[executeUpdate] "+ i);
+					"INSERT INTO 01_free VALUE (4, 'hoge');");
+			w("[executeUpdate] " + i);
 			boolean b = s.execute( // <= has ResultSet?
-				"INSERT INTO 01_free VALUE (5, 'fuge');");
+					"INSERT INTO 01_free VALUE (5, 'fuge');");
 			w("[execute] " + b);
 			w("[getUpdateCount()] " + s.getUpdateCount());
 			ResultSet r2 = s.getResultSet();
@@ -104,8 +108,8 @@ class UseJDBC {
 				w(e.getSQLState());
 				w("-- e.setNextException() --");
 				e.setNextException(
-					new SQLException("dummy error1",
-						new Exception("dummy error2")));
+						new SQLException("dummy error1",
+								new Exception("dummy error2")));
 				w("-- e.iterator() --");
 				for (Throwable t : e) {
 					w(t);
@@ -113,8 +117,9 @@ class UseJDBC {
 			}
 			w("---- SELECT * FROM table; ----");
 			r = s.executeQuery("SELECT * FROM 01_free;");
-			while (r.next()) w(
-				r.getInt("id") + ": " + r.getString("name"));
+			while (r.next())
+				w(
+						r.getInt("id") + ": " + r.getString("name"));
 			w("-- r.absolute(3) --");
 			r.absolute(3);
 			w(r.getInt("id") + ": " + r.getString("name"));
@@ -124,27 +129,28 @@ class UseJDBC {
 			r.updateString(2, "i_user1");
 			r.insertRow();
 			w("[insert row] "
-				+ r.getInt("id") + ": " + r.getString("name"));
+					+ r.getInt("id") + ": " + r.getString("name"));
 			r.updateInt(1, 11);
 			r.updateString(2, "i_user2");
 			r.insertRow();
 			w("[insert row] "
-				+ r.getInt("id") + ": " + r.getString("name"));
+					+ r.getInt("id") + ": " + r.getString("name"));
 			w("-- r.moveToCurrentRow() --");
 			r.moveToCurrentRow();
 			w("[current row] "
-				+ r.getInt("id") + ": " + r.getString("name"));
+					+ r.getInt("id") + ": " + r.getString("name"));
 
 			w("---- deleteRow() ----");
 			while (r.next()) {
 				w("[try delete-row] "
-					+ r.getInt("id") + ": " + r.getString("name"));
+						+ r.getInt("id") + ": " + r.getString("name"));
 				r.deleteRow();
 			}
 			w("---- SELECT * FROM table; ----");
 			r = s.executeQuery("SELECT * FROM 01_free;");
-			while (r.next()) w(
-				r.getInt("id") + ": " + r.getString("name"));
+			while (r.next())
+				w(
+						r.getInt("id") + ": " + r.getString("name"));
 
 			w("-- c.commit(); --");
 			c.commit(); // not required "Auto Commit Mode"
@@ -154,6 +160,7 @@ class UseJDBC {
 		}
 
 	}
+
 	public static void w(Object s) {
 		if (s == null) {
 			w("null");
@@ -162,9 +169,10 @@ class UseJDBC {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
+
 	public static long lap() {
 		return System.currentTimeMillis() - S;
 	}

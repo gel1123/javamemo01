@@ -1,8 +1,11 @@
-import java.util.stream.Stream;
 import java.io.IOException;
-import java.nio.*;
-import java.nio.file.*;
-import java.nio.file.attribute.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.stream.Stream;
 
 class UseNIO {
 	public static void main(String... args) {
@@ -34,7 +37,11 @@ class UseNIO {
 		w("-- p.resolveSibling(\"/etc/passwd\") --");
 		w(p.resolveSibling("/etc/passwd"));
 		w("-- Files.list(p) --");
-		try { w(Files.list(p)); } catch (IOException e) { w(e); }
+		try {
+			w(Files.list(p));
+		} catch (IOException e) {
+			w(e);
+		}
 		w("-- Files.exists(p) --");
 		final Boolean b;
 		w(b = Files.exists(p));
@@ -47,74 +54,73 @@ class UseNIO {
 		w("-- Paths.get(\"/etc/../etc/passwd\").normalize() --");
 		w(Paths.get("/etc/../etc/passwd").normalize());
 		w("-- Paths.get(\"etc\").relativize("
-			+ "Paths.get(\"/etc/passwd\")) --");
+				+ "Paths.get(\"/etc/passwd\")) --");
 		w(Paths.get("/etc").relativize(
-			Paths.get("/etc/passwd")));
+				Paths.get("/etc/passwd")));
 
 		try {
 			Files.walkFileTree(
-				Paths.get("."), new SimpleFileVisitor<Path>() {
-					@Override
-					public FileVisitResult postVisitDirectory(
-						Path dir, IOException e) {
-						w("[postVisitDirectory] " + dir);
-						return FileVisitResult.CONTINUE;
-					}
-					@Override
-					public FileVisitResult preVisitDirectory(
-						Path dir, BasicFileAttributes a) {
-						if (dir.getNameCount() > 1) {
-							w("---- getNameCount() > 1  ----");
-							w(dir.getName(1));
+					Paths.get("."), new SimpleFileVisitor<Path>() {
+						@Override
+						public FileVisitResult postVisitDirectory(
+								Path dir, IOException e) {
+							w("[postVisitDirectory] " + dir);
+							return FileVisitResult.CONTINUE;
 						}
 
-						if (dir.getNameCount() > 1
-							&& ".git".equals(
-								dir.getName(1).toString())) {
-							w("---- "
-								+ dir.getName(1)
-								+ "is skipped. ----");
-							return FileVisitResult.SKIP_SUBTREE;
+						@Override
+						public FileVisitResult preVisitDirectory(
+								Path dir, BasicFileAttributes a) {
+							if (dir.getNameCount() > 1) {
+								w("---- getNameCount() > 1  ----");
+								w(dir.getName(1));
+							}
+
+							if (dir.getNameCount() > 1
+									&& ".git".equals(
+											dir.getName(1).toString())) {
+								w("---- "
+										+ dir.getName(1)
+										+ "is skipped. ----");
+								return FileVisitResult.SKIP_SUBTREE;
+							}
+							w("[preVisitDirectory] " + dir);
+							return FileVisitResult.CONTINUE;
 						}
-						w("[preVisitDirectory] " + dir);
-						return FileVisitResult.CONTINUE;
-					}
-					@Override
-					public FileVisitResult visitFile(
-						Path p, BasicFileAttributes a) {
-						w("[visitFile] " + p);
-						return FileVisitResult.CONTINUE;
-					}
-					@Override
-					public FileVisitResult visitFileFailed(
-						Path p, IOException e) {
-						w("[visitFileFailed] " + p);
-						return FileVisitResult.CONTINUE;
-					}
-				}
-			);
+
+						@Override
+						public FileVisitResult visitFile(
+								Path p, BasicFileAttributes a) {
+							w("[visitFile] " + p);
+							return FileVisitResult.CONTINUE;
+						}
+
+						@Override
+						public FileVisitResult visitFileFailed(
+								Path p, IOException e) {
+							w("[visitFileFailed] " + p);
+							return FileVisitResult.CONTINUE;
+						}
+					});
 		} catch (IOException e) {
 			w(e);
 		}
 
 		try (
-			Stream<String> s
-				= Files.lines(Paths.get("file/test04.txt"))
-		) {
-			s.forEach(str -> w("[Files.lines()] "+str));
+				Stream<String> s = Files.lines(Paths.get("file/test04.txt"))) {
+			s.forEach(str -> w("[Files.lines()] " + str));
 		} catch (IOException e) {
 			w(e);
 		}
 
 		try (
-			Stream<Path> s
-				= Files.walk(Paths.get("file"))
-		) {
-			s.forEach(path -> w("[Files.walk()] "+path));
+				Stream<Path> s = Files.walk(Paths.get("file"))) {
+			s.forEach(path -> w("[Files.walk()] " + path));
 		} catch (IOException e) {
 			w(e);
 		}
 	}
+
 	public static void w(Object s) {
 		if (s == null) {
 			w("null");
@@ -123,7 +129,7 @@ class UseNIO {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

@@ -14,12 +14,24 @@ class UseAssert {
 		w(str2);
 		Boolean b1 = str1 == str2;
 		w(b1);
-		try { assert b1; } catch (AssertionError e) { w(e); }
+		try {
+			assert b1;
+		} catch (AssertionError e) {
+			w(e);
+		}
 		w("usage: [java -ea:pac01... App]");
 		w("usage: [java -ea:pac01/Test01 App]");
 		w("usage: [java -ea:pac01/Test02 App]");
-		try { t1(); } catch (AssertionError e) { w(e); }
-		try { t2(); } catch (AssertionError e) { w(e); }
+		try {
+			t1();
+		} catch (AssertionError e) {
+			w(e);
+		}
+		try {
+			t2();
+		} catch (AssertionError e) {
+			w(e);
+		}
 		w("---- end ----");
 	}
 
@@ -31,7 +43,7 @@ class UseAssert {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

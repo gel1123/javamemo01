@@ -6,6 +6,7 @@ class UseAutoCloseable {
 		public Hoge(String str) {
 			this.name = str;
 		}
+
 		@Override
 		public void close() {
 			UseAutoCloseable.w("-- close " + this.name + " --");
@@ -17,7 +18,7 @@ class UseAutoCloseable {
 		h1.close();
 
 		try (Hoge h2 = new UseAutoCloseable.Hoge("h2");
-			Hoge h3 = new UseAutoCloseable.Hoge("h3")) {
+				Hoge h3 = new UseAutoCloseable.Hoge("h3")) {
 			w("<< try-with-resources [none catch] >>");
 		}
 		w("---- end ----");
@@ -32,7 +33,7 @@ class UseAutoCloseable {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
 }

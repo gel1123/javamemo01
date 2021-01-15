@@ -17,15 +17,15 @@ class UseTreeSet {
 		public int compareTo(Product p) {
 			int diff = this.id - p.id;
 			w("-- the comparison process is "
-				+ "in progress ["+diff+"] --");
-			w("[[self]] "+this);
-			w("[[target]] "+p);
+					+ "in progress [" + diff + "] --");
+			w("[[self]] " + this);
+			w("[[target]] " + p);
 			return diff;
 		}
 
 		@Override
 		public String toString() {
-			return this.id+": "+this.name;
+			return this.id + ": " + this.name;
 		}
 	}
 
@@ -38,6 +38,7 @@ class UseTreeSet {
 			}
 		});
 	}
+
 	public static void w(Object s) {
 		if (s == null) {
 			w("null");
@@ -46,9 +47,10 @@ class UseTreeSet {
 		if (s instanceof String) {
 			System.out.println(s);
 		} else {
-			System.out.println("["+s.getClass().getName()+"] "+s);
+			System.out.println("[" + s.getClass().getName() + "] " + s);
 		}
 	}
+
 	public static long lap() {
 		return System.currentTimeMillis() - S;
 	}
