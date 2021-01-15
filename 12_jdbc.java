@@ -1,6 +1,11 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-class App {
+class UseJDBC {
 
 	private static final String URL
 		= "jdbc:mysql://127.0.0.1/sandbox";
@@ -142,7 +147,7 @@ class App {
 				r.getInt("id") + ": " + r.getString("name"));
 
 			w("-- c.commit(); --");
-			c.commit(); // not required "Auto Commit Mode" 
+			c.commit(); // not required "Auto Commit Mode"
 
 		} catch (Exception e) {
 			w(e);

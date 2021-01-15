@@ -1,5 +1,5 @@
-import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
 
 class AddAction extends RecursiveAction {
 	private static final int T_SIZE = 3;
@@ -29,7 +29,7 @@ class AddAction extends RecursiveAction {
 	}
 }
 
-class App {
+class UseRecursiveAction {
 	public static void main(String... args) {
 		int data[] = {1,2,3,4,5};
 		ForkJoinPool service = new ForkJoinPool();

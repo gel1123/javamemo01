@@ -1,10 +1,11 @@
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.TreeMap;
-import java.util.stream.*;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
-class App {
+class UseStream {
 
 	private static final long S = System.currentTimeMillis();
 

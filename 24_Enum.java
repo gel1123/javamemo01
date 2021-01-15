@@ -4,7 +4,7 @@ enum Directions {
 enum Cards {
 	SPADE, HEART, CLUB, DIAMOND, OTHER
 }
-class App {
+class UseEnum {
 	public static void main(String... args) {
 		w("---- start ----");
 

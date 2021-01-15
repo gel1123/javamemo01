@@ -1,9 +1,7 @@
-import java.lang.StringBuilder;
-import java.lang.AssertionError;
-import static pac01.Test01.t1;
-import static pac01.Test02.t2;
+import static pac01.Test01.*;
+import static pac01.Test02.*;
 
-class App {
+class UseAssert {
 
 	public static void main(String... args) {
 		w("---- start ----");

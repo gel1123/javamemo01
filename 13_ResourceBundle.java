@@ -1,14 +1,14 @@
-import java.util.ResourceBundle;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.nio.file.Paths;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.net.MalformedURLException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-class App {
+class UseResourceBundle {
 
 	private static final long S = System.currentTimeMillis();
 
@@ -21,7 +21,7 @@ class App {
 
 			Locale ja = Locale.JAPAN;
 			Locale us = Locale.US;
-	
+
 			List<Locale> list = new ArrayList<Locale>() {
 				{
 					this.add(ja);
@@ -42,7 +42,7 @@ class App {
 				w(rb1.getString("var"));
 				w("-- rb1.getString(\"initializer\") --");
 				w(rb1.getString("initializer"));
-	
+
 				w("<< getBundle from properties file >>");
 				w("-- rb2.getString(\"function\") --");
 				w(rb2.getString("function"));

@@ -1,9 +1,10 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-class App {
+class UseCollectors {
 	public static void main(String... args) {
 		w("---- start ----");
 		w("[[[ class Hoge ]]]");

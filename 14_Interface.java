@@ -1,5 +1,5 @@
 
-class App implements
+class UseInterface implements
 	pac01.Interface01,
 	pac01.p1.Interface02
 
@@ -9,7 +9,7 @@ class App implements
 
 	public static void main(String... args) {
 		w(pac01.Interface01.method01());
-		w(new App().method02());
+		w(new UseInterface().method02());
 		w(lam(() -> "exe with a lambda expression!"));
 		w(lam(new pac01.Interface01() {
 			@Override

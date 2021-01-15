@@ -1,7 +1,8 @@
 import java.util.Arrays;
-import java.util.stream.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-class App {
+class UseFlatMap {
 	public static void main(String... args) {
 		w("---- start ----");
 		int[][] array = {

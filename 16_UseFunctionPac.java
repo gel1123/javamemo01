@@ -1,6 +1,12 @@
-import java.util.function.*;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
-class App {
+class UseFunctionPac {
 
 	private static final long S = System.currentTimeMillis();
 
@@ -46,7 +52,7 @@ class App {
 		w("---- use 'Method Reference' on lambda ----");
 		Consumer<String> c = System.out::println;
 		c.accept("[SAM-Signature] void xxx(String)");
-		
+
 		w("---- use 'Constructor Reference' on lambda ----");
 		Function<String, Integer> f = Integer::new;
 		w(f.apply("10"));

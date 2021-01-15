@@ -1,23 +1,23 @@
-class App {
+class UseAutoCloseable {
 
 	static class Hoge implements AutoCloseable {
 		public String name;
 
 		public Hoge(String str) {
 			this.name = str;
-		} 
+		}
 		@Override
 		public void close() {
-			App.w("-- close " + this.name + " --");
+			UseAutoCloseable.w("-- close " + this.name + " --");
 		}
 	}
 
 	public static void main(String... args) {
-		Hoge h1 = new App.Hoge("h1");
+		Hoge h1 = new UseAutoCloseable.Hoge("h1");
 		h1.close();
 
-		try (Hoge h2 = new App.Hoge("h2");
-			Hoge h3 = new App.Hoge("h3")) {
+		try (Hoge h2 = new UseAutoCloseable.Hoge("h2");
+			Hoge h3 = new UseAutoCloseable.Hoge("h3")) {
 			w("<< try-with-resources [none catch] >>");
 		}
 		w("---- end ----");

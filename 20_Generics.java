@@ -21,7 +21,7 @@ class Util {
 	}
 }
 
-class App {
+class UseGenerics {
 	public static void main(String... args) {
 		// call generics method: [Class.<T>method()]
 		Map.Entry<String, Integer> e

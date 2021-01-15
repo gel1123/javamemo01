@@ -1,7 +1,6 @@
 import java.util.TreeSet;
-import java.lang.Comparable;
 
-class App {
+class UseTreeSet {
 
 	private static final long S = System.currentTimeMillis();
 
