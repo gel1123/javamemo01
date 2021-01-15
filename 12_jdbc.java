@@ -73,7 +73,7 @@ class App {
 			int i = s.executeUpdate(
 				"INSERT INTO 01_free VALUE (4, 'hoge');");
 			w("[executeUpdate] "+ i);
-			boolean b = s.execute(
+			boolean b = s.execute( // <= has ResultSet?
 				"INSERT INTO 01_free VALUE (5, 'fuge');");
 			w("[execute] " + b);
 			w("[getUpdateCount()] " + s.getUpdateCount());
